@@ -3,8 +3,8 @@ package wci.frontend.java;
 import wci.frontend.*;
 import wci.frontend.pascal.PascalErrorCode;
 import wci.message.Message;
-import static wci.frontend.pascal.PascalTokenType.*;
-import static wci.frontend.pascal.PascalErrorCode.*;
+import static wci.frontend.java.JavaTokenType.*;
+import static wci.frontend.java.JavaErrorCode.*;
 import static wci.message.MessageType.SYNTAX_ERROR;
 
 
@@ -30,7 +30,7 @@ public class JavaErrorHandler
      * @param parser the parser.
      * @return the flagger string.
      */
-    public void flag(Token token, PascalErrorCode errorCode, Parser parser)
+    public void flag(Token token, JavaErrorCode errorCode, Parser parser)
     {
         // Notify the parser's listeners.
         parser.sendMessage(new Message(SYNTAX_ERROR,
@@ -49,7 +49,7 @@ public class JavaErrorHandler
      * @param errorCode the error code.
      * @param parser the parser.
      */
-    public void abortTranslation(PascalErrorCode errorCode, Parser parser)
+    public void abortTranslation(JavaErrorCode errorCode, Parser parser)
     {
         // Notify the parser's listeners and then abort.
         String fatalText = "FATAL ERROR: " + errorCode.toString();

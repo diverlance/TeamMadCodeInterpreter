@@ -8,10 +8,14 @@ import wci.frontend.*;
 public enum JavaTokenType implements TokenType
 {
 	 // Reserved words.
-    AND, ARRAY, BEGIN, CASE, CONST, DIV, DO, DOWNTO, ELSE, END,
-    FILE, FOR, FUNCTION, GOTO, IF, IN, LABEL, MOD, NIL, NOT,
-    OF, OR, PACKED, PROCEDURE, PROGRAM, RECORD, REPEAT, SET,
-    THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH,
+	ABSTRACT("abstract"), DOUBLE("double"), INT("int"), LONG("long"),
+	BREAK("break"), ELSE("else"), SWITCH("switch"),
+	CASE("case"), ENUM("enum"), NATIVE("native"), SUPER("super"),
+	CHAR("char"), EXTENDS("extends"), RETURN("return"), THIS("this"),
+	CLASS("class"), FLOAT("float"), SHORT("short"), THROW("throw"),
+	CONST("const"), FOR("for"), PACKAGE("package"), VOID("void"),
+	CONTINUE("continue"), GOTO("goto"), PROTECTED("protected"), VOLATILE("volatile"),
+	DO("do"), IF("if"), STATIC("static"),WHILE("while"),
 
     // Special symbols.
     PLUS("+"), MINUS("-"), STAR("*"), SLASH("/"), COLON_EQUALS(":="),
@@ -24,8 +28,8 @@ public enum JavaTokenType implements TokenType
     IDENTIFIER, INTEGER, REAL, STRING,
     ERROR, END_OF_FILE;
 
-    private static final int FIRST_RESERVED_INDEX = AND.ordinal();
-    private static final int LAST_RESERVED_INDEX  = WITH.ordinal();
+    private static final int FIRST_RESERVED_INDEX = ABSTRACT.ordinal();
+    private static final int LAST_RESERVED_INDEX  = WHILE.ordinal();
 
     private static final int FIRST_SPECIAL_INDEX = PLUS.ordinal();
     private static final int LAST_SPECIAL_INDEX  = DOT_DOT.ordinal();

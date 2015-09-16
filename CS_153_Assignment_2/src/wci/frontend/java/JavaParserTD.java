@@ -1,15 +1,15 @@
 package wci.frontend.java;
 import wci.frontend.*;
-import wci.frontend.pascal.PascalErrorCode;
-import wci.frontend.pascal.PascalErrorHandler;
+import wci.frontend.java.JavaErrorCode;
+import wci.frontend.java.JavaErrorHandler;
 import wci.message.Message;
-import static wci.frontend.pascal.PascalTokenType.*;
-import static wci.frontend.pascal.PascalErrorCode.*;
+import static wci.frontend.java.JavaTokenType.*;
+import static wci.frontend.java.JavaErrorCode.*;
 import static wci.message.MessageType.*;
 
 public class JavaParserTD extends Parser
 {
-	protected static PascalErrorHandler errorHandler = new PascalErrorHandler();
+	protected static JavaErrorHandler errorHandler = new JavaErrorHandler();
 
 	protected JavaParserTD(Scanner scanner) {
 		super(scanner);
@@ -42,7 +42,7 @@ public class JavaParserTD extends Parser
                                                           token.getValue()}));
                 }
                 else {
-                    errorHandler.flag(token, (PascalErrorCode) token.getValue(),
+                    errorHandler.flag(token, (JavaErrorCode) token.getValue(),
                                       this);
                 }
 

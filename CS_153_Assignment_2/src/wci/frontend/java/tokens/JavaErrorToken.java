@@ -1,6 +1,6 @@
 package wci.frontend.java.tokens;
 
-import static wci.frontend.pascal.PascalTokenType.ERROR;
+import static wci.frontend.java.JavaTokenType.ERROR;
 import wci.frontend.*;
 import wci.frontend.java.*;
 

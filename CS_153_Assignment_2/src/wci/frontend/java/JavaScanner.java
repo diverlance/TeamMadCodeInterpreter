@@ -1,17 +1,17 @@
 package wci.frontend.java;
 
 import static wci.frontend.Source.EOF;
-import static wci.frontend.pascal.PascalErrorCode.INVALID_CHARACTER;
+import static wci.frontend.java.JavaErrorCode.INVALID_CHARACTER;
 import wci.frontend.EofToken;
 import wci.frontend.Scanner;
 import wci.frontend.Source;
 import wci.frontend.Token;
-import wci.frontend.pascal.PascalTokenType;
-import wci.frontend.pascal.tokens.PascalErrorToken;
-import wci.frontend.pascal.tokens.PascalNumberToken;
-import wci.frontend.pascal.tokens.PascalSpecialSymbolToken;
-import wci.frontend.pascal.tokens.PascalStringToken;
-import wci.frontend.pascal.tokens.PascalWordToken;
+import wci.frontend.java.JavaTokenType;
+import wci.frontend.java.tokens.JavaErrorToken;
+import wci.frontend.java.tokens.JavaNumberToken;
+import wci.frontend.java.tokens.JavaSpecialSymbolToken;
+import wci.frontend.java.tokens.JavaStringToken;
+import wci.frontend.java.tokens.JavaWordToken;
 
 public class JavaScanner extends Scanner
 {
@@ -35,20 +35,20 @@ public class JavaScanner extends Scanner
 	            token = new EofToken(source);
 	        }
 	        else if (Character.isLetter(currentChar)) {
-	            token = new PascalWordToken(source);
+	            token = new JavaWordToken(source);
 	        }
 	        else if (Character.isDigit(currentChar)) {
-	            token = new PascalNumberToken(source);
+	            token = new JavaNumberToken(source);
 	        }
 	        else if (currentChar == '\'') {
-	            token = new PascalStringToken(source);
+	            token = new JavaStringToken(source);
 	        }
-	        else if (PascalTokenType.SPECIAL_SYMBOLS
+	        else if (JavaTokenType.SPECIAL_SYMBOLS
 	                 .containsKey(Character.toString(currentChar))) {
-	            token = new PascalSpecialSymbolToken(source);
+	            token = new JavaSpecialSymbolToken(source);
 	        }
 	        else {
-	            token = new PascalErrorToken(source, INVALID_CHARACTER,
+	            token = new JavaErrorToken(source, INVALID_CHARACTER,
 	                                         Character.toString(currentChar));
 	            nextChar();  // consume character
 	        }
