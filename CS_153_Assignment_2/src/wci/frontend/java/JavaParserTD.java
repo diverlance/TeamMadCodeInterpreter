@@ -11,7 +11,7 @@ public class JavaParserTD extends Parser
 {
 	protected static JavaErrorHandler errorHandler = new JavaErrorHandler();
 
-	protected JavaParserTD(Scanner scanner) {
+	public JavaParserTD(Scanner scanner) {
 		super(scanner);
 		// TODO Auto-generated constructor stub
 	}
