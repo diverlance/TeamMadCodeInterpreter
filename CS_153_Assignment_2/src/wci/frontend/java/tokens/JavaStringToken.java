@@ -31,7 +31,7 @@ public class JavaStringToken extends JavaToken
         StringBuilder valueBuffer = new StringBuilder();
 
         char currentChar = nextChar();  // consume initial quote
-        textBuffer.append('\'');
+        textBuffer.append('\"');
 
         // Get string characters.
         do {
@@ -40,26 +40,26 @@ public class JavaStringToken extends JavaToken
                 currentChar = ' ';
             }
 
-            if ((currentChar != '\'') && (currentChar != EOF)) {
+            if ((currentChar != '"') && (currentChar != EOF)) {
                 textBuffer.append(currentChar);
                 valueBuffer.append(currentChar);
                 currentChar = nextChar();  // consume character
             }
 
             // Quote?  Each pair of adjacent quotes represents a single-quote.
-            if (currentChar == '\'') {
-                while ((currentChar == '\'') && (peekChar() == '\'')) {
-                    textBuffer.append("''");
+            if (currentChar == '"') {
+                while ((currentChar == '"') && (peekChar() == '"')) {
+                    textBuffer.append("\"\"");
                     valueBuffer.append(currentChar); // append single-quote
                     currentChar = nextChar();        // consume pair of quotes
                     currentChar = nextChar();
                 }
             }
-        } while ((currentChar != '\'') && (currentChar != EOF));
+        } while ((currentChar != '"') && (currentChar != EOF));
 
-        if (currentChar == '\'') {
+        if (currentChar == '"') {
             nextChar();  // consume final quote
-            textBuffer.append('\'');
+            textBuffer.append('"');
 
             type = STRING;
             value = valueBuffer.toString();
