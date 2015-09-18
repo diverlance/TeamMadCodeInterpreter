@@ -2,6 +2,8 @@ package wci.frontend;
 
 import wci.frontend.pascal.PascalParserTD;
 import wci.frontend.pascal.PascalScanner;
+import wci.frontend.java.JavaScanner;
+import wci.frontend.java.JavaParserTD;
 
 /**
  * <h1>FrontendFactory</h1>
