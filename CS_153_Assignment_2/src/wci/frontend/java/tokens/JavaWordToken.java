@@ -46,8 +46,8 @@ public class JavaWordToken extends JavaToken
         text = textBuffer.toString();
 
         // Is it a reserved word or an identifier?
-        type = (RESERVED_WORDS.contains(text.toLowerCase()))
-               ? JavaTokenType.valueOf(text.toUpperCase())  // reserved word
-               : IDENTIFIER;                                  // identifier
+        type = (RESERVED_WORDS.contains(text))					// Java case sensitivity
+               ? JavaTokenType.valueOf(text.toUpperCase())		// reserved word
+               : IDENTIFIER;									// identifier
     }
 }
