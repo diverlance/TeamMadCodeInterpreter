@@ -65,22 +65,30 @@ public class JavaScanner extends Scanner
 	    {
 	        char currentChar = currentChar();
 
-	        while (Character.isWhitespace(currentChar) || (currentChar == '{')) {
-
+	        while (Character.isWhitespace(currentChar) || (currentChar == '/')) 
+	        {
+	        	currentChar = nextChar();
 	            // Start of a comment?
-	            if (currentChar == '{') {
-	                do {
-	                    currentChar = nextChar();  // consume comment characters
-	                } while ((currentChar != '}') && (currentChar != EOF));
-
-	                // Found closing '}'?
-	                if (currentChar == '}') {
-	                    currentChar = nextChar();  // consume the '}'
-	                }
+	            if (currentChar == '/') 
+	            {
+	            	do 
+		            {
+		                currentChar = nextChar();  // consume comment characters
+		            } while (currentChar != '\n');
+	            }
+	            
+	            else if (currentChar == '*') 
+	            {
+		            do 
+		            {
+		                currentChar = nextChar();  // consume comment characters
+		            } while (currentChar != '*');
+		            currentChar = nextChar();
 	            }
 
 	            // Not a comment.
-	            else {
+	            else 
+	            {
 	                currentChar = nextChar();  // consume whitespace character
 	            }
 	        }
