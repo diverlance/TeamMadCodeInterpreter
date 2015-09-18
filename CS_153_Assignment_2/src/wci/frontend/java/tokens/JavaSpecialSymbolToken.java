@@ -37,7 +37,7 @@ public class JavaSpecialSymbolToken extends JavaToken
             case '+':  case '-':  case '*':  case '/':  case ',':
             case ';':  case '\'': case '=':  case '(':  case ')':
             case '[':  case ']':  case '{':  case '}':  case '^': 
-            case '%':  case '|':  case '&': {
+            case '%':  case '|':  case '&':  case '?':{
                 nextChar();  // consume character
                 break;
             }
