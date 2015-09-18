@@ -91,7 +91,7 @@ public class Java
             // Source path.
             if (i < args.length) {
                 String path = args[i];
-                new Pascal(operation, path, flags);
+                new Java(operation, path, flags);
             }
             else {
                 throw new Exception();
