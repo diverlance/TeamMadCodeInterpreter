@@ -64,33 +64,33 @@ public class JavaScanner extends Scanner
 	        throws Exception
 	    {
 	        char currentChar = currentChar();
-
-	        while (Character.isWhitespace(currentChar) || (currentChar == '/')) 
-	        {
-	        	currentChar = nextChar();
+                boolean endOfComment = false;
+	        while (Character.isWhitespace(currentChar) || (currentChar == '/')) {
 	            // Start of a comment?
-	            if (currentChar == '/') 
-	            {
-	            	do 
-		            {
-		                currentChar = nextChar();  // consume comment characters
-		            } while (currentChar != '\n');
-	            }
-	            
-	            else if (currentChar == '*') 
-	            {
-		            do 
-		            {
-		                currentChar = nextChar();  // consume comment characters
-		            } while (currentChar != '*');
-		            currentChar = nextChar();
-	            }
-
-	            // Not a comment.
-	            else 
-	            {
-	                currentChar = nextChar();  // consume whitespace character
-	            }
+	            if (currentChar == '/' ) {
+                        endOfComment = false;
+                        currentChar = nextChar();
+                       if (currentChar == '*'){
+                           do{
+                               currentChar = nextChar();
+                               if (currentChar == '*' && nextChar() == '/')
+                                   endOfComment = true;
+                           }while (!endOfComment && currentChar != EOF);
+                           currentChar = nextChar();
+                       } 
+                       else if (currentChar == '/'){
+                            do{
+                              currentChar = nextChar();  
+                            } while (currentChar != '\n');
+                        }
+                       else {
+                           currentChar = nextChar();
+                       }
+                    }
+                    //not a comment
+                    else {
+                            currentChar = nextChar();
+                    } 
 	        }
 	    }
 }
