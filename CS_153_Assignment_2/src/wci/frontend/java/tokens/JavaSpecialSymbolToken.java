@@ -37,20 +37,8 @@ public class JavaSpecialSymbolToken extends JavaToken
             case '+':  case '-':  case '*':  case '/':  case ',':
             case ';':  case '\'': case '=':  case '(':  case ')':
             case '[':  case ']':  case '{':  case '}':  case '^': 
-            case '%':  case '|':  case '&':  case '?':{
+            case '%':  case '|':  case '&':  case '?':  case ':':{
                 nextChar();  // consume character
-                break;
-            }
-
-            // : or :=
-            case ':': {
-                currentChar = nextChar();  // consume ':';
-
-                if (currentChar == '=') {
-                    text += currentChar;
-                    nextChar();  // consume '='
-                }
-
                 break;
             }
 
@@ -61,10 +49,6 @@ public class JavaSpecialSymbolToken extends JavaToken
                 if (currentChar == '=') {
                     text += currentChar;
                     nextChar();  // consume '='
-                }
-                else if (currentChar == '>') {
-                    text += currentChar;
-                    nextChar();  // consume '>'
                 }
 
                 break;
