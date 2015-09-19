@@ -20,7 +20,8 @@ public enum JavaTokenType implements TokenType
     // Special symbols.
     PLUS("+"), MINUS("-"), STAR("*"), SLASH("/"), DOT("."),
     COMMA(","), SEMICOLON(";"), COLON(":"), SINGLE_QUOTE("'"),
-    QUOTE("\""), NOT_EQUALS("!="),
+    LESS_THAN_OR_EQUAL("<="), GREATER_THAN_OR_EQUAL(">="), SHIFT_LEFT("<<="),
+    SHIFT_RIGHT(">>="), QUOTE("\""), NOT_EQUALS("!="), DOUBLE_EQUALS("=="),
     LESS_THAN("<"), QUESTION("?"), GREATER_THAN(">"),
     LEFT_PAREN("("), RIGHT_PAREN(")"), LEFT_BRACKET("["),
     RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"),
@@ -28,7 +29,7 @@ public enum JavaTokenType implements TokenType
     GREATOR_EQUALS(">="), LESS_EQUALS ("<="),
     NOT("!"), AT("@"), MODULO("%"), SLASH_SLASH("//"),DOT_DOT(".."), BLANK_LINE("\n"), BACKSLASH("\\"), EQUALS("="),
 
-    IDENTIFIER, INTEGER, REAL, STRING,
+    IDENTIFIER, CHARACTER, INTEGER, REAL, STRING,
     ERROR, END_OF_FILE;
 
     private static final int FIRST_RESERVED_INDEX = ABSTRACT.ordinal();
