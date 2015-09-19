@@ -25,6 +25,7 @@ public enum JavaTokenType implements TokenType
     LEFT_PAREN("("), RIGHT_PAREN(")"), LEFT_BRACKET("["),
     RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"),
     UP_ARROW("^"), AND("&"), OR("|"), TILDE("~"),
+    GREATOR_EQUALS(">="), LESS_EQUALS ("<="),
     NOT("!"), AT("@"), MODULO("%"), SLASH_SLASH("//"),DOT_DOT(".."), BLANK_LINE("\n"), BACKSLASH("\\"), EQUALS("="),
 
     IDENTIFIER, INTEGER, REAL, STRING,
