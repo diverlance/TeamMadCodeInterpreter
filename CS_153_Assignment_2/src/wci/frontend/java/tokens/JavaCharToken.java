@@ -1,100 +1,70 @@
-package wci.frontend.java;
+package wci.frontend.java.tokens;
 
-import static wci.frontend.Source.EOF;
-import static wci.frontend.java.JavaErrorCode.INVALID_CHARACTER;
-import wci.frontend.EofToken;
-import wci.frontend.Scanner;
-import wci.frontend.Source;
-import wci.frontend.Token;
-import wci.frontend.java.JavaTokenType;
-import wci.frontend.java.tokens.JavaErrorToken;
-import wci.frontend.java.tokens.JavaNumberToken;
-import wci.frontend.java.tokens.JavaSpecialSymbolToken;
-import wci.frontend.java.tokens.JavaStringToken;
-import wci.frontend.java.tokens.JavaCharToken;
-import wci.frontend.java.tokens.JavaWordToken;
+import wci.frontend.*;
+import wci.frontend.java.*;
 
-public class JavaScanner extends Scanner
-{
+import static wci.frontend.java.JavaTokenType.*;
 
-	public JavaScanner(Source source) {
-		super(source);
-		// TODO Auto-generated constructor stub
-	}
+/**
+ *
+ * @author Ying Yau
+ */
+public class JavaCharToken extends JavaToken {
+    /**
+     * Constructor.
+     * @param source the source from where to fetch the token's characters.
+     * @throws Exception if an error occurred.
+     */
+    public JavaCharToken(Source source)
+        throws Exception
+    {
+        super(source);
+    }
 
-	protected Token extractToken()
-	        throws Exception
-	    {
-	        skipWhiteSpace();
-	        Token token;
-	        char currentChar = currentChar();
-
-	        // Construct the next token.  The current character determines the
-	        // token type.
-	        if (currentChar == EOF) {
-	            token = new EofToken(source);
-	        }
-	        else if (Character.isLetter(currentChar)) {
-	            token = new JavaWordToken(source);
-	        }
-	        else if (Character.isDigit(currentChar)) {
-	            token = new JavaNumberToken(source);
-	        }
-	        else if (currentChar == '\"') {
-                        token = new JavaStringToken(source);
-	        }
-                else if (currentChar == '\''){
-                    token = new JavaCharToken(source);
+    /**
+     * Extract a Java word token from the source.
+     * @throws Exception if an error occurred.
+     */
+    protected void extract()
+        throws Exception
+    {
+        StringBuilder textBuffer = new StringBuilder();
+        char currentChar = nextChar();
+        textBuffer.append('\'');
+        if (currentChar == '\\'){
+            textBuffer.append(currentChar);
+            currentChar = nextChar();
+            if (currentChar == 'n'){
+                type = BLANK_LINE;
+                textBuffer.append(currentChar);
+            }
+            else if (currentChar == 't'){
+                type = TAB;
+                textBuffer.append(currentChar);
+            }
+            else if (currentChar == '\''){
+                if (peekChar() == '\''){
+                    
+                    type = SINGLE_QUOTE;
+                    textBuffer.append(currentChar);
+            }
+                else {
+                    type = CHAR;
+                    textBuffer.append(currentChar);
                 }
-	        else if (JavaTokenType.SPECIAL_SYMBOLS
-	                 .containsKey(Character.toString(currentChar))) {
-	            token = new JavaSpecialSymbolToken(source);
-	        }
-	        else {
-	            token = new JavaErrorToken(source, INVALID_CHARACTER,
-	                                         Character.toString(currentChar));
-	            nextChar();  // consume character
-	        }
-
-	        return token;
-	    }
-
-	    /**
-	     * Skip whitespace characters by consuming them.  A comment is whitespace.
-	     * @throws Exception if an error occurred.
-	     */
-	    private void skipWhiteSpace()
-	        throws Exception
-	    {
-	        char currentChar = currentChar();
-                boolean endOfComment = false;
-	        while (Character.isWhitespace(currentChar) || (currentChar == '/')) {
-	            // Start of a comment?
-	            if (currentChar == '/' ) {
-                        endOfComment = false;
-                        currentChar = nextChar();
-                       if (currentChar == '*'){
-                           do{
-                               currentChar = nextChar();
-                               if (currentChar == '*' && nextChar() == '/')
-                                   endOfComment = true;
-                           }while (!endOfComment && currentChar != EOF);
-                           currentChar = nextChar();
-                       } 
-                       else if (currentChar == '/'){
-                            do{
-                              currentChar = nextChar();  
-                            } while (currentChar != '\n');
-                            currentChar = nextChar();
-                        }
-                       else {
-                           currentChar = nextChar();
-                       }
-                    }
-                    //not a comment
-                    else {
-                            currentChar = nextChar();
-                    } 
-	        }
-	    }
+            }
+            else{
+                type = null;
+                textBuffer.append(currentChar);
+            }
+            nextChar();
+        }else{
+            type = CHAR;
+            textBuffer.append(currentChar);
+            nextChar();
+        }
+        textBuffer.append('\'');
+        text = textBuffer.toString();
+        nextChar();
+    }
 }
