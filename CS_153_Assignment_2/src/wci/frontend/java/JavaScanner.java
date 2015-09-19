@@ -9,6 +9,7 @@ import wci.frontend.Token;
 import wci.frontend.java.JavaTokenType;
 import wci.frontend.java.tokens.JavaErrorToken;
 import wci.frontend.java.tokens.JavaNumberToken;
+import wci.frontend.java.tokens.JavaCharToken;
 import wci.frontend.java.tokens.JavaSpecialSymbolToken;
 import wci.frontend.java.tokens.JavaStringToken;
 import wci.frontend.java.tokens.JavaWordToken;
@@ -43,6 +44,9 @@ public class JavaScanner extends Scanner
 	        else if (currentChar == '"') {
 	            token = new JavaStringToken(source);
 	        }
+                else if (currentChar == '\''){
+                    token = new JavaCharToken(source);
+                }
 	        else if (JavaTokenType.SPECIAL_SYMBOLS
 	                 .containsKey(Character.toString(currentChar))) {
 	            token = new JavaSpecialSymbolToken(source);
