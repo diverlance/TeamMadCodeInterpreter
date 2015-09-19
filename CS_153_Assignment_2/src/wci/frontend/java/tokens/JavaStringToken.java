@@ -40,12 +40,24 @@ public class JavaStringToken extends JavaToken
                 currentChar = ' ';
             }
 
-            if ((currentChar != '"') && (currentChar != EOF)) {
+            if ((currentChar != '"') && (currentChar != EOF) && currentChar != '\\') {
                 textBuffer.append(currentChar);
                 valueBuffer.append(currentChar);
                 currentChar = nextChar();  // consume character
             }
-
+            if(currentChar == '\\') 
+            {
+            	textBuffer.append(currentChar);
+                valueBuffer.append(currentChar);
+                currentChar = nextChar();  // consume character
+            	if(currentChar == '"')
+            	{
+            		textBuffer.append(currentChar);
+                    valueBuffer.append(currentChar);
+                    currentChar = nextChar();  // consume character
+            	}
+            }
+            	
             // Quote?  Each pair of adjacent quotes represents a single-quote.
             if (currentChar == '"') {
                 while ((currentChar == '"') && (peekChar() == '"')) {
