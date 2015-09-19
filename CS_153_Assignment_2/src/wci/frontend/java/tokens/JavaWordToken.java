@@ -38,7 +38,7 @@ public class JavaWordToken extends JavaToken
 
         // Get the word characters (letter or digit).  The scanner has
         // already determined that the first character is a letter.
-        while (Character.isLetterOrDigit(currentChar)) {
+        while (Character.isJavaIdentifierStart(currentChar)) {
             textBuffer.append(currentChar);
             currentChar = nextChar();  // consume character
         }

@@ -4,7 +4,10 @@
 /* Here's a comment
    that spans several
    source lines. */
-
+321
+321.0
+?
+_TEst
 Two/*comments in*//***a row***/ here.
 /* This is /* not a nested comment. */
 // Nor is /* this */ one.
@@ -27,6 +30,7 @@ What?
 ""  "\""
 
 // Special symbol tokens
+
 + - * / := . , ; : = <> < <= >= > ( ) [ ] { } } ^ ..
 <<=  >>=
 :=<>=<==>>===

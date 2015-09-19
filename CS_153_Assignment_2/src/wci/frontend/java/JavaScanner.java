@@ -34,7 +34,7 @@ public class JavaScanner extends Scanner
 	        if (currentChar == EOF) {
 	            token = new EofToken(source);
 	        }
-	        else if (Character.isLetter(currentChar)) {
+	        else if (Character.isJavaIdentifierStart(currentChar)) {
 	            token = new JavaWordToken(source);
 	        }
 	        else if (Character.isDigit(currentChar)) {
